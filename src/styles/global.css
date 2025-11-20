@@ -1,0 +1,441 @@
+:root {
+  /* Colores Principales del Tema */
+  --color-primary-dark: #102e50;
+  --color-secondary-light: #f5c45e;
+
+  /* Colores de Alerta y Predicción */
+  --color-risk-low: #388e3c;
+  --color-risk-medium: #e78b48;
+  --color-risk-high: #be3d2a;
+
+  /* Texto y Fondo */
+  --color-text-dark: #102e50;
+  --color-text-light: #ffffff;
+  --color-background: #f8f8f8;
+  --color-card-background: #ffffff;
+}
+
+/* ============================================
+   ESTILOS GLOBALES
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-secondary-light);
+  color: var(--color-primary-dark);
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  background-color: var(--color-card-background);
+  padding: 30px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   TIPOGRAFÍA
+   ============================================ */
+h1 {
+  color: var(--color-primary-dark);
+  text-align: center;
+  border-bottom: 2px solid var(--color-secondary-light);
+  padding-bottom: 10px;
+}
+
+/* ============================================
+   FORMULARIOS
+   ============================================ */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0c233d;
+  }
+}
+
+/* ============================================
+   PANEL DE IA Y RESULTADOS
+   ============================================ */
+.ia-panel {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+
+  h3 {
+    color: var(--color-primary-dark);
+    margin-top: 0;
+  }
+
+  ul,
+  ol {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+}
+
+/* ============================================
+   ESTADOS DE RIESGO
+   ============================================ */
+.risk-status {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.risk-high {
+  color: var(--color-risk-high);
+  background-color: rgba(190, 61, 42, 0.1);
+}
+
+.risk-medium {
+  color: var(--color-risk-medium);
+  background-color: rgba(231, 139, 72, 0.1);
+}
+
+.risk-low {
+  color: var(--color-risk-low);
+  background-color: rgba(56, 142, 60, 0.1);
+}
+
+/* ============================================
+   MENSAJES DE ERROR
+   ============================================ */
+.error-message {
+  color: var(--color-risk-high);
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* ============================================
+   HERO HEADER
+   ============================================ */
+.hero-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    #1a4570 50%,
+    var(--color-primary-dark) 100%
+  );
+  padding: 40px 20px;
+  /* margin-bottom: 40px; */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+  color: var(--color-secondary-light);
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+}
+
+.hero-title {
+  color: var(--color-text-light);
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  color: var(--color-secondary-light);
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.hero-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95em;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ============================================
+   FEATURES GRID
+   ============================================ */
+.features-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 15px;
+  margin-top: 30px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+.feature-icon {
+  color: var(--color-secondary-light);
+  margin-bottom: 10px;
+}
+
+.feature-title {
+  color: var(--color-secondary-light);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.feature-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ============================================
+   CONTENIDO PRINCIPAL
+   ============================================ */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 60px 20px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--color-background);
+  padding: 30px 20px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.footer-text {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer-subtext {
+  color: #999;
+  font-size: 12px;
+  margin: 10px 0 0 0;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   MAIN PREDICTOR UI
+   ============================================ */
+.predictor-wrapper {
+  /* min-height: 100vh; */
+}
+
+.predictor-navbar {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    #1a4570 100%
+  );
+  padding: 20px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 30px;
+  border-radius: 0 0 5px 5px;
+}
+
+.predictor-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.predictor-navbar-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.predictor-nav-button {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.active {
+    background: var(--color-secondary-light);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &.inactive {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-light);
+    font-weight: 500;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+.predictor-student-info {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: var(--color-text-light);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .student-code {
+    opacity: 0.8;
+  }
+}
+
+.predictor-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: var(--color-text-light);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.predictor-content {
+  padding: 0 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.predictor-view {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.8em;
+  }
+
+  .hero-subtitle {
+    font-size: 1em;
+  }
+
+  .hero-icon {
+    font-size: 48px;
+  }
+
+  /* Features en columna para móviles */
+  .features-grid {
+    flex-direction: column;
+    max-width: 300px;
+  }
+
+  .feature-card {
+    width: 100%;
+  }
+}

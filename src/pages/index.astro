@@ -1,11 +1,160 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../styles/global.css";
+import MainPredictorUI from "../components/MainPredictorUI.jsx";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Predicción de Deserción Estudiantil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero-header">
+      <div class="hero-container">
+        <div class="hero-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+
+        <h1 class="hero-title">Sistema Predictivo de Deserción Estudiantil</h1>
+
+        <p class="hero-subtitle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="display: inline-block; vertical-align: middle; margin-right: 8px;"
+          >
+            <rect width="18" height="10" x="3" y="11" rx="2"></rect>
+            <circle cx="12" cy="5" r="2"></circle>
+            <path d="M12 7v4"></path>
+            <line x1="8" x2="8" y1="16" y2="16"></line>
+            <line x1="16" x2="16" y1="16" y2="16"></line>
+          </svg>
+          Análisis Predictivo con Inteligencia Artificial
+        </p>
+
+        <p class="hero-description">
+          Identificación temprana de riesgos y recomendaciones personalizadas
+          para mejorar la retención estudiantil
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feature-icon"
+            >
+              <path d="M12 8V4H8"></path>
+              <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+              <path d="M2 14h2"></path>
+              <path d="M20 14h2"></path>
+              <path d="M15 13v2"></path>
+              <path d="M9 13v2"></path>
+            </svg>
+            <div class="feature-title">IA</div>
+            <div class="feature-description">Análisis Inteligente</div>
+          </div>
+
+          <div class="feature-card">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feature-icon"
+              ><path d="M12 6v6l-4 2"></path><circle cx="12" cy="12" r="10"
+              ></circle></svg
+            >
+
+            <div class="feature-title">Real-Time</div>
+            <div class="feature-description">Predicción Instantánea</div>
+          </div>
+
+          <div class="feature-card">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feature-icon"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <div class="feature-title">Personalizado</div>
+            <div class="feature-description">Recomendaciones Únicas</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <MainPredictorUI client:load />
+    </main>
+
+    <footer class="footer">
+      <p class="footer-text">
+        Sistema de Predicción de Deserción Estudiantil - Prototipo de
+        Investigación
+      </p>
+    </footer>
+
+    <style>
+      * {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+    </style>
+  </body>
+</html>
