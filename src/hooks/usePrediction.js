@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const BACKEND_URL = `${process.env.BACKEND_URL}/predict`;      
+const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3000';      
 
 /**
  * Custom Hook para gestionar el envío de datos y el estado de la predicción,
