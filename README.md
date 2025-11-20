@@ -684,28 +684,6 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ---
 
-## 👥 Autores
-
-- **Tu Nombre** - *Desarrollo inicial* - [Tu GitHub](https://github.com/tu-usuario)
-
----
-
-## 🙏 Agradecimientos
-
-- Equipo de desarrollo de **Astro**
-- Comunidad de **React**
-- Creadores de **Lucide Icons**
-- UNAD - Universidad Nacional Abierta y a Distancia
-
----
-
-
-
-## 🌟 Soporte
-
-Si este proyecto te fue útil, considera darle una ⭐ en GitHub!
-
----
 
 <div align="center">
 
