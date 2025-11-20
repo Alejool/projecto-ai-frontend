@@ -1,4 +1,3 @@
-// src/hooks/usePrediction.js
 import { useState } from 'react';
 
 const BACKEND_URL = `${process.env.BACKEND_URL}/predict`;      

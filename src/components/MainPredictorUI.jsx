@@ -1,4 +1,3 @@
-// src/components/MainPredictorUI.jsx
 import React, { useEffect, useState } from "react";
 import { usePrediction } from "../hooks/usePrediction";
 import DropoutPredictor from "./DropoutPredictor.jsx";
