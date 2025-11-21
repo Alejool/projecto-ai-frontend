@@ -295,16 +295,53 @@ export default function DropoutPredictor({
               />
               Recomendación de IA
             </strong>
-            <p
-              style={{
-                margin: 0,
-                lineHeight: "1.8",
-                whiteSpace: "pre-wrap",
-                color: "var(--color-text-dark)",
-              }}
-            >
-              {result.aiRecommendation}
-            </p>
+            <div>
+              {(() => {
+                const parts = result.aiRecommendation.split("--");
+                const intro = parts[0].trim();
+                const recommendations = parts
+                  .slice(1)
+                  .filter((rec) => rec.trim().length > 0);
+
+                return (
+                  <>
+                    {intro && (
+                      <p
+                        style={{
+                          margin: "0 0 12px 0",
+                          lineHeight: "1.6",
+                          color: "var(--color-text-dark)",
+                          fontWeight: "500",
+                        }}
+                      >
+                        {intro}
+                      </p>
+                    )}
+                    {recommendations.length > 0 && (
+                      <ul
+                        style={{
+                          margin: 0,
+                          paddingLeft: "20px",
+                          color: "var(--color-text-dark)",
+                        }}
+                      >
+                        {recommendations.map((rec, index) => (
+                          <li
+                            key={index}
+                            style={{
+                              marginBottom: "8px",
+                              lineHeight: "1.6",
+                            }}
+                          >
+                            {rec.trim()}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                );
+              })()}
+            </div>
           </div>
         )}
       </div>
