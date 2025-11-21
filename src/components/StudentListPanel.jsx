@@ -39,7 +39,7 @@ export default function StudentListPanel({
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchFilter, setSearchFilter] = useState("");
-  const studentsPerPage = 4;
+  const studentsPerPage = 8;
 
   if (loading) {
     return (
@@ -339,10 +339,11 @@ export default function StudentListPanel({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(4, 1fr)",
           gap: "20px",
           marginBottom: "30px",
         }}
+        className="students-grid"
       >
         {currentStudents.map((student) => {
           const riskColor = getRiskColor(student.color);

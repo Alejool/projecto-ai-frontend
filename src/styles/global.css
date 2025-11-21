@@ -27,13 +27,12 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
- background-image: url("/bg.jpg");
+  background-image: url("/bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
 
 ::selection {
   background: var(--color-secondary-light);
@@ -435,5 +434,27 @@ button {
 
   .feature-card {
     width: 100%;
+  }
+}
+
+/* ============================================
+   GRID DE ESTUDIANTES
+   ============================================ */
+/* Por defecto: 4 columnas en pantallas anchas */
+.students-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* 2 columnas en pantallas medianas (tablets y pantallas más pequeñas) */
+@media (max-width: 1200px) {
+  .students-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* 1 columna en móviles */
+@media (max-width: 600px) {
+  .students-grid {
+    grid-template-columns: 1fr !important;
   }
 }
