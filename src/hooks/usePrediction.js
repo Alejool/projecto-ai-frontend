@@ -35,6 +35,29 @@ export const usePrediction = () => {
         }
     };
 
+    // ==========================================================
+    // 1.1. FUNCIÓN PARA OBTENER UN ESTUDIANTE POR ID (GET /students/:id)
+    // ==========================================================
+    const getStudentById = async (id) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`${BACKEND_URL}/students/${id}`);
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            console.error('Error al obtener estudiante:', err);
+            setError(`Error al cargar estudiante: ${err.message}`);
+            return null;
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     // ==========================================================
     // 2. FUNCIÓN PARA ENVIAR DATOS A LA IA (POST /risk)
@@ -70,6 +93,183 @@ export const usePrediction = () => {
     };
 
     // ==========================================================
+    // 3. FUNCIÓN PARA ACTUALIZAR ESTUDIANTE (PUT /students/:id)
+    // ==========================================================
+    const updateStudent = async (id, studentData) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/students/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+            
+            // Refrescar la lista después de actualizar
+            await fetchStudentList();
+            return true;
+
+        } catch (err) {
+            console.error('Error al actualizar estudiante:', err);
+            setError(`Error al actualizar: ${err.message}`);
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ==========================================================
+    // 4. FUNCIÓN PARA CREAR ESTUDIANTE (POST /students)
+    // ==========================================================
+    const createStudent = async (studentData) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/students`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+
+            // Refrescar la lista después de crear
+            await fetchStudentList();
+            return true;
+
+        } catch (err) {
+            console.error('Error al crear estudiante:', err);
+            setError(`Error al crear: ${err.message}`);
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ==========================================================
+    // 3. RETORNO DEL HOOK
+    // ==========================================================
+    return { 
+        result, 
+    };
+
+
+    // ==========================================================
+    // 2. FUNCIÓN PARA ENVIAR DATOS A LA IA (POST /risk)
+    // ==========================================================
+    const predictDropout = async (studentData) => {
+        setLoading(true);
+        setError(null);
+        setResult(null);
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/risk`, { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+
+            const data = await response.json();
+            setResult(data); 
+
+        } catch (err) {
+            console.error('Error al realizar la predicción:', err);
+            setError(`Error en el servidor de predicción: ${err.message}.`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ==========================================================
+    // 3. FUNCIÓN PARA ACTUALIZAR ESTUDIANTE (PUT /students/:id)
+    // ==========================================================
+    const updateStudent = async (id, studentData) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/students/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+            
+            // Refrescar la lista después de actualizar
+            await fetchStudentList();
+            return true;
+
+        } catch (err) {
+            console.error('Error al actualizar estudiante:', err);
+            setError(`Error al actualizar: ${err.message}`);
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ==========================================================
+    // 4. FUNCIÓN PARA CREAR ESTUDIANTE (POST /students)
+    // ==========================================================
+    const createStudent = async (studentData) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/students`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (!response.ok) {
+                const errorDetail = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetail}`);
+            }
+
+            // Refrescar la lista después de crear
+            await fetchStudentList();
+            return true;
+
+        } catch (err) {
+            console.error('Error al crear estudiante:', err);
+            setError(`Error al crear: ${err.message}`);
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ==========================================================
     // 3. RETORNO DEL HOOK
     // ==========================================================
     return { 
@@ -78,6 +278,10 @@ export const usePrediction = () => {
         error, 
         predictDropout,
         studentList,
-        fetchStudentList
+        fetchStudentList,
+        getStudentById,
+        updateStudent,
+        createStudent
     };
 };
+```

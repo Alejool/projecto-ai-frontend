@@ -1,4 +1,5 @@
-import React, { useState } from "react";import {
+import React, { useState } from "react";
+import {
   BookOpen,
   AlertCircle,
   Inbox,
@@ -32,6 +33,7 @@ function getRiskClass(color) {
 export default function StudentListPanel({
   students,
   onSelectStudent,
+  onAddStudent,
   loading,
   error,
 }) {
@@ -118,7 +120,7 @@ export default function StudentListPanel({
       </div>
     );
   }
-    
+
   const filteredStudents = students.filter((student) =>
     student.code.toLowerCase().includes(searchFilter.toLowerCase())
   );
@@ -138,7 +140,6 @@ export default function StudentListPanel({
 
   return (
     <div>
-
       <div
         style={{
           background:
@@ -163,17 +164,50 @@ export default function StudentListPanel({
           />
           Estudiantes Registrados
         </h2>
-        <p
+        <div
           style={{
-            margin: 0,
-            color: "var(--color-text-dark)",
-            opacity: 0.8,
-            fontSize: "15px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "10px",
           }}
         >
-          Seleccione un estudiante para ver su análisis de riesgo y
-          recomendaciones de IA
-        </p>
+          <p
+            style={{
+              margin: 0,
+              color: "var(--color-text-dark)",
+              opacity: 0.8,
+              fontSize: "15px",
+            }}
+          >
+            Seleccione un estudiante para ver su análisis.
+          </p>
+          <button
+            onClick={onAddStudent}
+            style={{
+              backgroundColor: "var(--color-primary-dark)",
+              color: "white",
+              border: "none",
+              padding: "8px 16px",
+              borderRadius: "6px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontSize: "14px",
+              fontWeight: "500",
+              transition: "background-color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#2c3e50")}
+            onMouseLeave={(e) =>
+              (e.target.style.backgroundColor = "var(--color-primary-dark)")
+            }
+          >
+            <Inbox size={16} />
+            Registrar Estudiante
+          </button>
+        </div>
 
         <div
           style={{
@@ -274,7 +308,7 @@ export default function StudentListPanel({
           </div>
         </div>
       </div>
-      
+
       {filteredStudents.length === 0 && searchFilter && (
         <div
           style={{

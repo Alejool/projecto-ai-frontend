@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { usePrediction } from "../hooks/usePrediction";
 import DropoutPredictor from "./DropoutPredictor.jsx";
 import StudentListPanel from "./StudentListPanel.jsx";
+import CreateStudentModal from "./CreateStudentModal.jsx";
 import { Users, User, Search } from "lucide-react";
 
 export default function MainPredictorUI() {
@@ -12,31 +13,72 @@ export default function MainPredictorUI() {
     loading,
     predictDropout,
     result,
+    updateStudent,
+    createStudent,
+    getStudentById,
   } = usePrediction();
   const [viewMode, setViewMode] = useState("list"); // 'list', 'result'
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     fetchStudentList();
   }, []);
 
-  const handleSelectStudent = (student) => {
+  const handleSelectStudent = async (student) => {
+    // Primero establecemos el estudiante seleccionado con los datos básicos de la lista
     setSelectedStudent(student);
     setViewMode("result");
 
-    const studentData = {
-      academicAverage: student.academicAverage,
-      motivationLevel: student.motivationLevel,
-      weeklyAttendance: student.weeklyAttendance,
-      socioeconomicFactor: student.socioeconomicFactor,
-    };
-    predictDropout(studentData);
+    // Luego intentamos obtener los datos más frescos del servidor
+    const freshStudentData = await getStudentById(student.id);
+
+    if (freshStudentData) {
+      setSelectedStudent(freshStudentData);
+
+      const studentData = {
+        academicAverage: freshStudentData.academicAverage,
+        motivationLevel: freshStudentData.motivationLevel,
+        weeklyAttendance: freshStudentData.weeklyAttendance,
+        socioeconomicFactor: freshStudentData.socioeconomicFactor,
+      };
+      predictDropout(studentData);
+    } else {
+      // Fallback si falla la carga individual
+      const studentData = {
+        academicAverage: student.academicAverage,
+        motivationLevel: student.motivationLevel,
+        weeklyAttendance: student.weeklyAttendance,
+        socioeconomicFactor: student.socioeconomicFactor,
+      };
+      predictDropout(studentData);
+    }
   };
 
   const handleManualPredict = (data) => {
     setSelectedStudent(null);
     setViewMode("result");
     predictDropout(data);
+  };
+
+  const handleCreateStudent = async (data) => {
+    const success = await createStudent(data);
+    if (success) {
+      setShowCreateModal(false);
+    }
+  };
+
+  const handleUpdateStudent = async (id, data) => {
+    const success = await updateStudent(id, data);
+    if (success) {
+      // Obtener los datos actualizados del estudiante
+      const updatedStudent = await getStudentById(id);
+      if (updatedStudent) {
+        setSelectedStudent(updatedStudent);
+      }
+      // Actualizar la predicción con los nuevos datos
+      predictDropout(data);
+    }
   };
 
   const handleBackToList = () => {
@@ -81,6 +123,7 @@ export default function MainPredictorUI() {
           <StudentListPanel
             students={studentList}
             onSelectStudent={handleSelectStudent}
+            onAddStudent={() => setShowCreateModal(true)}
             loading={loading}
             error={error}
           />
@@ -105,10 +148,20 @@ export default function MainPredictorUI() {
                   : "Entrada Manual"
               }
               onPredict={handleManualPredict}
+              studentId={selectedStudent ? selectedStudent.id : null}
+              onUpdate={handleUpdateStudent}
             />
           </div>
         )}
       </div>
+
+      {showCreateModal && (
+        <CreateStudentModal
+          onClose={() => setShowCreateModal(false)}
+          onCreate={handleCreateStudent}
+          loading={loading}
+        />
+      )}
     </div>
   );
 }

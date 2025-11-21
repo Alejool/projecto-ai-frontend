@@ -19,6 +19,8 @@ export default function DropoutPredictor({
   result,
   loading,
   error,
+  studentId,
+  onUpdate,
 }) {
   const [formData, setFormData] = useState(
     defaultData || {
@@ -32,11 +34,10 @@ export default function DropoutPredictor({
   const previousCaseName = useRef(defaultCaseName);
 
   useEffect(() => {
-    if (defaultData && defaultCaseName !== previousCaseName.current) {
+    if (defaultData) {
       setFormData(defaultData);
-      previousCaseName.current = defaultCaseName;
     }
-  }, [defaultData, defaultCaseName]);
+  }, [defaultData]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -54,7 +55,9 @@ export default function DropoutPredictor({
       socioeconomicFactor: parseInt(formData.socioeconomicFactor),
     };
 
-    if (onPredict) {
+    if (studentId && onUpdate) {
+      onUpdate(studentId, studentData);
+    } else if (onPredict) {
       onPredict(studentData);
     }
   };
@@ -65,14 +68,14 @@ export default function DropoutPredictor({
     const riskPercentage = result.risk || 0;
     let riskClass = "risk-low";
     let cssColor = "var(--color-risk-low)";
-    let rgbColor = "56, 142, 60"; 
+    let rgbColor = "56, 142, 60";
     let bgColor = "rgba(56, 142, 60, 0.05)";
     let borderColor = "var(--color-risk-low)";
 
     if (result.color === "rojo") {
       riskClass = "risk-high";
       cssColor = "var(--color-risk-high)";
-      rgbColor = "190, 61, 42"; 
+      rgbColor = "190, 61, 42";
       bgColor = "rgba(190, 61, 42, 0.05)";
       borderColor = "var(--color-risk-high)";
     } else if (result.color === "naranja") {
@@ -177,7 +180,6 @@ export default function DropoutPredictor({
             ></div>
           </div>
         </div>
-
 
         {result.factors && (
           <div
@@ -420,7 +422,6 @@ export default function DropoutPredictor({
             </small>
           </div>
 
-
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label
               htmlFor="motivationLevel"
@@ -580,7 +581,11 @@ export default function DropoutPredictor({
           </div>
         </div>
 
-       
+        <div style={{}}>
+          <button type="submit" disabled={loading}>
+            {loading ? "Procesando..." : "Generar Reporte"}
+          </button>
+        </div>
       </form>
 
       <div id="resultContainer">
