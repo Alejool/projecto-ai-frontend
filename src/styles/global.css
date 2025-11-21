@@ -13,6 +13,7 @@
   --color-text-light: #ffffff;
   --color-background: #f8f8f8;
   --color-card-background: #ffffff;
+  --color-card-background-whit-blur: rgba(255, 255, 255, 0.5);
 }
 
 /* ============================================
@@ -25,9 +26,14 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-background);
   min-height: 100vh;
+ background-image: url("/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 
 ::selection {
   background: var(--color-secondary-light);
@@ -98,9 +104,8 @@ button {
    ============================================ */
 .ia-panel {
   margin-top: 30px;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  padding: 40px;
+  border-radius: 4px;
 
   h3 {
     color: var(--color-primary-dark);
@@ -273,9 +278,7 @@ button {
    FOOTER
    ============================================ */
 .footer {
-  background: var(--color-background);
   padding: 30px 20px;
-  border-top: 1px solid #e0e0e0;
   text-align: center;
 }
 
@@ -323,15 +326,10 @@ button {
 }
 
 .predictor-navbar {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-dark) 0%,
-    #1a4570 100%
-  );
-  padding: 20px 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  margin-bottom: 30px;
-  border-radius: 0 0 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 10px 10px 20px;
 }
 
 .predictor-navbar-content {
@@ -367,21 +365,21 @@ button {
   }
 
   &.inactive {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--color-text-light);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--color-primary-dark);
     font-weight: 500;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.9);
     }
   }
 }
 
 .predictor-student-info {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.4);
   padding: 12px 20px;
   border-radius: 8px;
-  color: var(--color-text-light);
+  /* color: var(--color-text-light); */
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -393,10 +391,10 @@ button {
 }
 
 .predictor-badge {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
   padding: 8px 16px;
   border-radius: 20px;
-  color: var(--color-text-light);
+  /* color: var(--color-text-light); */
   font-size: 13px;
   display: flex;
   align-items: center;
