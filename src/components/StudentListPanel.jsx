@@ -142,7 +142,7 @@ export default function StudentListPanel({
       <div
         style={{
           background:
-            "linear-gradient(135deg, rgba(16, 46, 80, 0.05) 0%, rgba(16, 46, 80, 0.02) 100%)",
+            "linear-gradient(135deg, rgba(16, 46, 80, 0.212) 0%, rgba(16, 46, 80, 0.116) 100%)",
           padding: "20px",
           borderRadius: "12px",
           marginBottom: "30px",
@@ -175,7 +175,6 @@ export default function StudentListPanel({
           recomendaciones de IA
         </p>
 
-        {/* Campo de búsqueda */}
         <div
           style={{
             marginTop: "15px",
@@ -320,7 +319,7 @@ export default function StudentListPanel({
               key={student.id}
               onClick={() => onSelectStudent(student)}
               style={{
-                background: "var(--color-card-background)",
+                background: "var(--color-card-background-whit-blur)",
                 borderRadius: "5px",
                 padding: "20px",
                 cursor: "pointer",

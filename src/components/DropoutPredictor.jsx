@@ -90,7 +90,7 @@ export default function DropoutPredictor({
         className="ia-panel container"
         style={{
           backgroundColor: bgColor,
-          borderLeft: `5px solid ${borderColor}`,
+          borderLeft: `3px solid ${borderColor}`,
           boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
           transition: "all 0.3s ease",
         }}
@@ -109,12 +109,12 @@ export default function DropoutPredictor({
             style={{
               margin: 0,
               color: "var(--color-primary-dark)",
-              fontSize: "1.4em",
+              fontSize: "1.8em",
             }}
           >
             <BarChart3
               size={20}
-              style={{ display: "inline", marginRight: "8px" }}
+              style={{ display: "inline", marginRight: "14px" }}
             />
             Resultados del Análisis
           </h3>
@@ -123,7 +123,7 @@ export default function DropoutPredictor({
             style={{
               fontSize: "1em",
               padding: "8px 16px",
-              borderRadius: "20px",
+              borderRadius: "10px",
               border: `2px solid ${cssColor}`,
             }}
           >
@@ -157,8 +157,8 @@ export default function DropoutPredictor({
           <div
             style={{
               background: "var(--color-background)",
-              borderRadius: "12px",
-              height: "28px",
+              borderRadius: "7px",
+              height: "25px",
               width: "100%",
               position: "relative",
               overflow: "hidden",
@@ -170,7 +170,7 @@ export default function DropoutPredictor({
                 height: "100%",
                 width: `${riskPercentage}%`,
                 background: `linear-gradient(90deg, rgba(${rgbColor}, 1), rgba(${rgbColor}, 0.85))`,
-                borderRadius: "12px",
+                borderRadius: "7px",
                 transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                 boxShadow: `0 0 10px rgba(${rgbColor}, 0.3)`,
               }}
@@ -317,7 +317,7 @@ export default function DropoutPredictor({
         style={{
           background: "var(--color-card-background)",
           padding: "30px",
-          borderRadius: "12px",
+          borderRadius: "8px",
           boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
           marginBottom: "30px",
           border: "1px solid #e0e0e0",
