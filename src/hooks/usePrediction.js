@@ -2,14 +2,8 @@ import { useState } from 'react';
 
 const BACKEND_URL = `${import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3000'}/predict`;      
 
-/**
- * Custom Hook para gestionar el envío de datos y el estado de la predicción,
- * incluyendo la solicitud de la lista de estudiantes pre-calculados.
- */
 export const usePrediction = () => {
-    // Estado para la predicción de un solo estudiante (POST /risk)
     const [result, setResult] = useState(null);
-    // Estado para la lista de estudiantes (GET /students)
     const [studentList, setStudentList] = useState([]); 
     
     const [loading, setLoading] = useState(false);
@@ -51,7 +45,6 @@ export const usePrediction = () => {
         setResult(null);
 
         try {
-            // Llama al endpoint de riesgo (que incluye la llamada a Gemini/Deepseek)
             const response = await fetch(`${BACKEND_URL}/risk`, { 
                 method: 'POST',
                 headers: {
@@ -66,7 +59,7 @@ export const usePrediction = () => {
             }
 
             const data = await response.json();
-            setResult(data); // Almacena el resultado enriquecido de la IA
+            setResult(data); 
 
         } catch (err) {
             console.error('Error al realizar la predicción:', err);
@@ -84,7 +77,6 @@ export const usePrediction = () => {
         loading, 
         error, 
         predictDropout,
-        // Nuevas propiedades para la lista:
         studentList,
         fetchStudentList
     };

@@ -20,7 +20,6 @@ export default function DropoutPredictor({
   loading,
   error,
 }) {
-  // Estado local para los datos del formulario
   const [formData, setFormData] = useState(
     defaultData || {
       academicAverage: 0,
@@ -30,10 +29,8 @@ export default function DropoutPredictor({
     }
   );
 
-  // Ref para rastrear el caso anterior
   const previousCaseName = useRef(defaultCaseName);
 
-  // Sincronizar estado SOLO cuando cambia el estudiante seleccionado
   useEffect(() => {
     if (defaultData && defaultCaseName !== previousCaseName.current) {
       setFormData(defaultData);
@@ -65,32 +62,27 @@ export default function DropoutPredictor({
   const renderResult = () => {
     if (!result) return null;
 
-    // El riesgo ya viene como porcentaje (ej: 10.9)
     const riskPercentage = result.risk || 0;
-
-    // Mapear el color del backend a las clases CSS y valores RGB
     let riskClass = "risk-low";
     let cssColor = "var(--color-risk-low)";
-    let rgbColor = "56, 142, 60"; // Verde
+    let rgbColor = "56, 142, 60"; 
     let bgColor = "rgba(56, 142, 60, 0.05)";
     let borderColor = "var(--color-risk-low)";
 
-    // Usar el color que viene del backend
     if (result.color === "rojo") {
       riskClass = "risk-high";
       cssColor = "var(--color-risk-high)";
-      rgbColor = "190, 61, 42"; // Rojo
+      rgbColor = "190, 61, 42"; 
       bgColor = "rgba(190, 61, 42, 0.05)";
       borderColor = "var(--color-risk-high)";
     } else if (result.color === "naranja") {
       riskClass = "risk-medium";
       cssColor = "var(--color-risk-medium)";
-      rgbColor = "231, 139, 72"; // Naranja
+      rgbColor = "231, 139, 72";
       bgColor = "rgba(231, 139, 72, 0.05)";
       borderColor = "var(--color-risk-medium)";
     }
 
-    // Usar el status que viene del backend
     const displayStatus = result.status || "Estado no disponible";
 
     return (
@@ -139,7 +131,6 @@ export default function DropoutPredictor({
           </span>
         </div>
 
-        {/* Indicador de Probabilidad */}
         <div style={{ marginBottom: "25px" }}>
           <div
             style={{
@@ -187,7 +178,7 @@ export default function DropoutPredictor({
           </div>
         </div>
 
-        {/* Factores Analizados */}
+
         {result.factors && (
           <div
             style={{
@@ -239,7 +230,6 @@ export default function DropoutPredictor({
           </div>
         )}
 
-        {/* Problemas Identificados */}
         {result.problems && result.problems.length > 0 && (
           <div
             style={{
@@ -280,7 +270,6 @@ export default function DropoutPredictor({
           </div>
         )}
 
-        {/* Recomendación de IA */}
         {result.aiRecommendation && (
           <div
             style={{
@@ -378,7 +367,6 @@ export default function DropoutPredictor({
             marginBottom: "25px",
           }}
         >
-          {/* Promedio Académico */}
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label
               htmlFor="academicAverage"
@@ -432,7 +420,7 @@ export default function DropoutPredictor({
             </small>
           </div>
 
-          {/* Nivel de Motivación */}
+
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label
               htmlFor="motivationLevel"
@@ -486,7 +474,6 @@ export default function DropoutPredictor({
             </small>
           </div>
 
-          {/* Frecuencia de Conexión */}
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label
               htmlFor="weeklyAttendance"
@@ -539,8 +526,6 @@ export default function DropoutPredictor({
               Días por semana: 0 - 7
             </small>
           </div>
-
-          {/* Factor Socioeconómico */}
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label
               htmlFor="socioeconomicFactor"
@@ -595,63 +580,7 @@ export default function DropoutPredictor({
           </div>
         </div>
 
-        {/* <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: "15px 30px",
-            background: loading
-              ? "#ccc"
-              : "linear-gradient(135deg, var(--color-primary-dark) 0%, #1a4570 100%)",
-            color: "var(--color-text-light)",
-            border: "none",
-            borderRadius: "8px",
-            fontSize: "16px",
-            fontWeight: "600",
-            cursor: loading ? "not-allowed" : "pointer",
-            transition: "all 0.3s ease",
-            boxShadow: loading ? "none" : "0 4px 12px rgba(16, 46, 80, 0.3)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-          }}
-          onMouseEnter={(e) => {
-            if (!loading) {
-              e.target.style.transform = "translateY(-2px)";
-              e.target.style.boxShadow = "0 6px 16px rgba(16, 46, 80, 0.4)";
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!loading) {
-              e.target.style.transform = "translateY(0)";
-              e.target.style.boxShadow = "0 4px 12px rgba(16, 46, 80, 0.3)";
-            }
-          }}
-        >
-          {loading ? (
-            <>
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "16px",
-                  height: "16px",
-                  border: "2px solid white",
-                  borderTopColor: "transparent",
-                  borderRadius: "50%",
-                  animation: "spin 0.8s linear infinite",
-                }}
-              ></span>
-              Calculando...
-            </>
-          ) : (
-            <>
-              <Bot size={18} />
-              Analizar Perfil y Generar Recomendaciones IA
-            </>
-          )}
-        </button> */}
+       
       </form>
 
       <div id="resultContainer">

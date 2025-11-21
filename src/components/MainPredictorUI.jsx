@@ -46,7 +46,6 @@ export default function MainPredictorUI() {
 
   return (
     <div className="predictor-wrapper">
-      {/* Barra de Navegación Moderna */}
       <div className="predictor-navbar">
         <div className="predictor-navbar-content">
           <div className="predictor-navbar-left">
@@ -77,10 +76,7 @@ export default function MainPredictorUI() {
           )}
         </div>
       </div>
-
-      {/* Contenido Principal */}
       <div className="predictor-content">
-        {/* VISTA: LISTADO DE ESTUDIANTES */}
         {viewMode === "list" && (
           <StudentListPanel
             students={studentList}
@@ -89,8 +85,6 @@ export default function MainPredictorUI() {
             error={error}
           />
         )}
-
-        {/* VISTA: RESULTADOS */}
         {viewMode === "result" && (
           <div className="predictor-view">
             <DropoutPredictor

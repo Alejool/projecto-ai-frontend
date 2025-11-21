@@ -118,13 +118,11 @@ export default function StudentListPanel({
       </div>
     );
   }
-
-  // Filtrar estudiantes por código
+    
   const filteredStudents = students.filter((student) =>
     student.code.toLowerCase().includes(searchFilter.toLowerCase())
   );
 
-  // Paginación
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = filteredStudents.slice(
@@ -133,15 +131,14 @@ export default function StudentListPanel({
   );
   const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
 
-  // Resetear página si el filtro cambia
   const handleSearchChange = (e) => {
     setSearchFilter(e.target.value);
-    setCurrentPage(1); // Volver a la primera página al filtrar
+    setCurrentPage(1);
   };
 
   return (
     <div>
-      {/* Header con estadísticas */}
+
       <div
         style={{
           background:
@@ -278,8 +275,7 @@ export default function StudentListPanel({
           </div>
         </div>
       </div>
-
-      {/* Mensaje cuando no hay resultados del filtro */}
+      
       {filteredStudents.length === 0 && searchFilter && (
         <div
           style={{
@@ -307,7 +303,6 @@ export default function StudentListPanel({
         </div>
       )}
 
-      {/* Grid de estudiantes */}
       <div
         style={{
           display: "grid",
@@ -362,7 +357,6 @@ export default function StudentListPanel({
                 {student.risk.toFixed(1)}%
               </div>
 
-              {/* Nombre y código */}
               <h3
                 style={{
                   margin: "0 0 8px 0",
@@ -389,7 +383,6 @@ export default function StudentListPanel({
                 {student.code}
               </p>
 
-              {/* Status badge */}
               <div
                 className={`risk-status ${riskClass}`}
                 style={{
@@ -404,7 +397,6 @@ export default function StudentListPanel({
                 {student.status}
               </div>
 
-              {/* Métricas */}
               <div
                 style={{
                   display: "grid",
@@ -461,7 +453,6 @@ export default function StudentListPanel({
                 </div>
               </div>
 
-              {/* Hover indicator */}
               <div
                 style={{
                   position: "absolute",
@@ -480,7 +471,6 @@ export default function StudentListPanel({
         })}
       </div>
 
-      {/* Paginación */}
       {totalPages > 1 && (
         <div
           style={{
